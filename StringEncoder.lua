@@ -2,7 +2,7 @@ local HttpService = game:GetService("HttpService");
 
 -- Define our base64 characters
 local base64chars = [[
-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
 ]];
 
 function stringToBase64(str)
