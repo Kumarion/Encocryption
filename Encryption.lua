@@ -1,5 +1,13 @@
 local Encryption = { };
 
+function HexDigest(data)
+    local digest = "";
+    for i = 1, #data do
+        digest = digest .. string.format("%02x", data:byte(i));
+    end;
+    return digest;
+end;
+
 -- SHA Encryption Algorithm
 function Encryption.sha256(data)
     -- start values
@@ -96,15 +104,12 @@ function Encryption.sha256(data)
 
     -- result
     local result = string.pack(">I4I4I4I4I4I4I4I4", h0, h1, h2, h3, h4, h5, h6, h7);
-	
-    -- convert it to hex
-	local hex = "";
-	for i = 1, #result do
-		hex = hex .. string.format("%02x", string.byte(result, i));
-	end;
-	
-    -- return
-	return hex;
+
+    -- return the result
+    return {
+        hex = HexDigest(result),
+        bytes = {string.byte(result, 1, -1)}
+    };
 end
 function Encryption.sha224(data)
     -- ...
