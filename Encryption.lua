@@ -2,6 +2,7 @@ local sha = { };
 
 function sha.sha256(data)
     -- start values
+    -- first 32 bits of the fractional parts of the square roots of the first 8 primes
     local h0 = 0x6a09e667;
     local h1 = 0xbb67ae85;
     local h2 = 0x3c6ef372;
@@ -12,6 +13,7 @@ function sha.sha256(data)
     local h7 = 0x5be0cd19;
 
     -- constants
+    -- first 32 bits of the fractional parts of the cube roots of the first 64 primes
     local k = {
         0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
         0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
@@ -44,11 +46,13 @@ function sha.sha256(data)
 
         -- fill the w array
         for j = 1, 16 do
+            -- get the 32 bit word
             w[j] = string.unpack(">I4", chunk:sub((j - 1) * 4 + 1, j * 4));
         end;
 
         -- extend the w array
         for j = 17, 64 do
+            -- calculate the s0 and s1 values and add them to the w array
             local s0 = bit32.bxor(bit32.rrotate(w[j - 15], 7), bit32.rrotate(w[j - 15], 18), bit32.rshift(w[j - 15], 3));
             local s1 = bit32.bxor(bit32.rrotate(w[j - 2], 17), bit32.rrotate(w[j - 2], 19), bit32.rshift(w[j - 2], 10));
             w[j] = bit32.band(w[j - 16] + s0 + w[j - 7] + s1, 0xffffffff);
@@ -59,6 +63,7 @@ function sha.sha256(data)
 
         -- main loop
         for j = 1, 64 do
+            -- calculate the working variables
             local s0 = bit32.bxor(bit32.rrotate(a, 2), bit32.rrotate(a, 13), bit32.rrotate(a, 22));
             local maj = bit32.bxor(bit32.band(a, b), bit32.band(a, c), bit32.band(b, c));
             local t2 = s0 + maj;
@@ -66,6 +71,7 @@ function sha.sha256(data)
             local ch = bit32.bxor(bit32.band(e, f), bit32.band(bit32.bnot(e), g));
             local t1 = h + s1 + ch + k[j] + w[j];
 
+            -- update the working variables
             h = g;
             g = f;
             f = e;
@@ -90,6 +96,7 @@ function sha.sha256(data)
     -- result
     local result = string.pack(">I4I4I4I4I4I4I4I4", h0, h1, h2, h3, h4, h5, h6, h7);
 	
+    -- convert it to hex
 	local hex = "";
 	for i = 1, #result do
 		hex = hex .. string.format("%02x", string.byte(result, i));
