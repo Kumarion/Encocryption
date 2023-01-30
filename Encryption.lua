@@ -107,8 +107,12 @@ function Encryption.sha256(data)
 
     -- return the result
     return {
-        hex = HexDigest(result),
-        bytes = {string.byte(result, 1, -1)}
+        hex = function()
+            return HexDigest(result)
+        end,
+        bytes = function()
+            return {string.byte(result, 1, -1)}
+        end
     };
 end
 function Encryption.sha224(data)
