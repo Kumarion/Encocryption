@@ -1,4 +1,4 @@
-local HttpService = game:GetService("HttpService");
+local module = {}
 
 -- Define our base64 characters
 local base64chars = [[
@@ -9,6 +9,43 @@ local base64chars = [[
 local base91chars = [[
 	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&()*+,-./:;<=>?@[]^_`{|}~
 ]];
+
+-- Define our base16 characters
+local base16chars = "0123456789ABCDEF";
+
+local function stringToBase16(inputString)
+	local result = "";
+
+	for i = 1, #inputString do
+		local charCode = inputString:sub(i, i):byte();
+
+		result = result .. 
+			base16chars:sub(bit32.rshift(charCode, 4) + 1, bit32.rshift(charCode, 4) + 1) ..
+			base16chars:sub(bit32.band(charCode, 15) + 1, bit32.band(charCode, 15) + 1);
+	end;
+
+	return result;
+end
+
+local function base16ToString(inputBase16)
+	local result = "";
+
+	for i = 1, #inputBase16, 2 do
+		local char1 = inputBase16:sub(i, i);
+		local char2 = inputBase16:sub(i + 1, i + 1);
+		local pos1 = base16chars:find(char1);
+		local pos2 = base16chars:find(char2);
+
+		if (pos1 == nil or pos2 == nil) then
+			return "Error: Invalid character in inputBase16 string.";
+		end;
+
+		local charCode = (pos1 - 1) * 16 + (pos2 - 1);
+		result = result .. string.char(charCode);
+	end;
+
+	return result;
+end
 
 function stringToBase64(str)
 	local serialized = str;
@@ -149,10 +186,28 @@ local function base91ToString(base91)
 	return decoded;
 end
 
-return {
-	Encode64 = stringToBase64,
-	Decode64 = base64ToString,
+-- Base 16
+function module.Encode16(str)
+	return stringToBase16(str);
+end
+function module.Decode16(base16)
+	return base16ToString(base16);
+end
 
-	Encode91 = stringToBase91,
-	Decode91 = base91ToString,
-}
+-- Base 64
+function module.Encode64(str)
+	return stringToBase64(str);
+end
+function module.Decode64(base64)
+	return base64ToString(base64);
+end
+
+-- Base 91
+function module.Encode91(str)
+	return stringToBase91(str);
+end
+function module.Decode91(base91)
+	return base91ToString(base91);
+end
+
+return module;

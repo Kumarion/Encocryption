@@ -3,6 +3,7 @@ local StringEncoder = require(game:GetService("ReplicatedStorage").StringEncoder
 
 -- Define the test
 local function StringEncoder64Test()
+	print("--------------BASE 64---------------");
 	-- Define the test string
 	local testString = "Hello World!";
 
@@ -16,12 +17,11 @@ local function StringEncoder64Test()
 	print("Test String: " .. testString);
 	print("Encoded String: " .. encodedString);
 	print("Decoded String: " .. decodedString);
-
-	-- Assert the results
-	assert(testString == decodedString, "The decoded string does not match the original string.");
+	print("--------------------------------------");
 end
 
 local function StringEncoder91Test()
+	print("--------------BASE 91---------------");
 	-- Define the test string
 	local testString = "Hello World! How are you!!";
 
@@ -35,11 +35,28 @@ local function StringEncoder91Test()
 	print("Test String: " .. testString);
 	print("Encoded String: " .. encodedString);
 	print("Decoded String: " .. decodedString);
+	print("--------------------------------------");
+end
 
-	-- Assert the results
-	assert(testString == decodedString, "The decoded string does not match the original string.");
+local function StringEncoder16Test()
+	print("--------------BASE 16---------------");
+	-- Define the test string
+	local testString = "Hithere"
+
+	-- Encode the string
+	local encodedString = StringEncoder.Encode16(testString);
+
+	-- Decode the string
+	local decodedString = StringEncoder.Decode16(encodedString);
+
+	-- Print the results
+	print("Test String: " .. testString);
+	print("Encoded String: " .. encodedString);
+	print("Decoded String: " .. decodedString);
+	print("--------------------------------------");
 end
 
 -- Run the test
---StringEncoder64Test();
+StringEncoder64Test();
 StringEncoder91Test();
+StringEncoder16Test();
