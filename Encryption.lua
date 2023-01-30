@@ -1,5 +1,6 @@
 local Encryption = { };
 
+-- SHA Encryption Algorithm
 function Encryption.sha256(data)
     -- start values
     -- first 32 bits of the fractional parts of the square roots of the first 8 primes
@@ -105,15 +106,12 @@ function Encryption.sha256(data)
     -- return
 	return hex;
 end
-
 function Encryption.sha224(data)
     -- ...
 end
-
 function Encryption.sha384(data)
     -- ...
 end
-
 function Encryption.sha512(data)
     -- ...
 end
