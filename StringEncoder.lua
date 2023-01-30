@@ -1,14 +1,10 @@
 local module = {}
 
 -- Define our base64 characters
-local base64chars = [[
-	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
-]];
+local base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 -- Define our base91 characters (recommended for use with datastores)
-local base91chars = [[
-	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&()*+,-./:;<=>?@[]^_`{|}~
-]];
+local base91chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&()*+,-./:;<=>?@[]^_`{|}~";
 
 -- Define our base16 characters
 local base16chars = "0123456789ABCDEF";
