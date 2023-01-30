@@ -1,5 +1,5 @@
 -- Define the module
-local StringEncoder = require(game:GetService("ReplicatedStorage").StringEncoder);
+local StringEncoder = require(game:GetService("ReplicatedStorage").Encoder);
 
 -- Define the test
 local function StringEncoder64Test()
