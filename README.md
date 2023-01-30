@@ -13,3 +13,5 @@ Current supported algorithms are:
 - Base16 (Hexadecimal)
 - Base91 (recommended for datastores)
 - More?
+
+For the future, there will be options to have results returned as encoded strings...
