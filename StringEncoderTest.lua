@@ -60,3 +60,23 @@ end
 StringEncoder64Test();
 StringEncoder91Test();
 StringEncoder16Test();
+
+-- Result:
+
+--[[
+	--------------BASE 64---------------
+	Test String: Hello World!
+	Encoded String: RFUraF7fU18xaFPg
+	Decoded String: Hello World!
+	--------------------------------------
+	--------------BASE 91---------------
+	Test String: Hello World! How are you!!
+	Encoded String: <NvIg<HnzSu97OaK}psJb(5d#x*%kP6K
+	Decoded String: Hello World! How are you!!
+	--------------------------------------
+	--------------BASE 16---------------
+	Test String: Hithere
+	Encoded String: 48697468657265
+	Decoded String: Hithere
+	--------------------------------------
+]]
