@@ -110,4 +110,12 @@ function Encryption.sha224(data)
     -- ...
 end
 
+function Encryption.sha384(data)
+    -- ...
+end
+
+function Encryption.sha512(data)
+    -- ...
+end
+
 return Encryption
