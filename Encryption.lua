@@ -1,6 +1,6 @@
-local sha = { };
+local Encryption = { };
 
-function sha.sha256(data)
+function Encryption.sha256(data)
     -- start values
     -- first 32 bits of the fractional parts of the square roots of the first 8 primes
     local h0 = 0x6a09e667;
@@ -106,8 +106,8 @@ function sha.sha256(data)
 	return hex;
 end
 
-function sha.sha224(data)
+function Encryption.sha224(data)
     -- ...
 end
 
-return sha
+return Encryption

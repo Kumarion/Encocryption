@@ -1,4 +1,4 @@
-local module = {}
+local Encoder = { };
 
 -- Define our base64 characters
 local base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -183,27 +183,27 @@ local function base91ToString(base91)
 end
 
 -- Base 16
-function module.Encode16(str)
+function Encoder.Encode16(str)
 	return stringToBase16(str);
 end
-function module.Decode16(base16)
+function Encoder.Decode16(base16)
 	return base16ToString(base16);
 end
 
 -- Base 64
-function module.Encode64(str)
+function Encoder.Encode64(str)
 	return stringToBase64(str);
 end
-function module.Decode64(base64)
+function Encoder.Decode64(base64)
 	return base64ToString(base64);
 end
 
 -- Base 91
-function module.Encode91(str)
+function Encoder.Encode91(str)
 	return stringToBase91(str);
 end
-function module.Decode91(base91)
+function Encoder.Decode91(base91)
 	return base91ToString(base91);
 end
 
-return module;
+return Encoder;
