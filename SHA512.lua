@@ -98,8 +98,8 @@ function SHA512(data)
             a = bit32.band(t1 + t2, MAX_64BIT);
         end;
 
-        print("END OF LOOP");
-        print(a,b,c,d,e,f,g,h);
+        print("end");
+        print(a, b, c, d, e, f, g, h);
 
         main[1] = bit32.band(main[1] + a, MAX_64BIT);
         main[2] = bit32.band(main[2] + b, MAX_64BIT);
@@ -115,13 +115,21 @@ function SHA512(data)
         _sha512_process(data:sub(i, i + 127));
     end;
 
-    local digest = "";
+    local function digestHex()
+        local digest = "";
 
-    for i = 1, #main do
-        digest = digest .. string.format("%02x", main[i]);
+        for i = 1, #main do
+            digest = digest .. string.format("%02x", main[i]);
+        end;
+
+        return digest;
     end;
 
-    return digest;
+    return {
+        hex = function()
+            return digestHex();
+        end
+    };
 end
 
-print(SHA512("unicorn"));
+print(SHA512("unicorn").hex());
