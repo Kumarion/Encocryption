@@ -55,11 +55,11 @@ function SHA512(data)
 
         -- fill the w array
         for j = 1, 16 do
-            -- get the 32 bit word
+            -- get the 64 bit word
             local word = chunk:sub((j - 1) * 8 + 1, j * 8);
 
             -- pad the word if it's too short
-            if #word < 8 then
+            if (#word < 8) then
                 word = word .. string.rep("\0", 8 - #word);
             end;
 
@@ -101,6 +101,7 @@ function SHA512(data)
         print("end");
         print(a, b, c, d, e, f, g, h);
 
+        -- add the values to the main array
         main[1] = bit32.band(main[1] + a, MAX_64BIT);
         main[2] = bit32.band(main[2] + b, MAX_64BIT);
         main[3] = bit32.band(main[3] + c, MAX_64BIT);
@@ -111,10 +112,12 @@ function SHA512(data)
         main[8] = bit32.band(main[8] + h, MAX_64BIT);
     end;
 
+    -- process the data
     for i = 1, #data, 128 do
         _sha512_process(data:sub(i, i + 127));
     end;
 
+    -- convert the digest to hex
     local function digestHex()
         local digest = "";
 
