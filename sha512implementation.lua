@@ -34,6 +34,8 @@ local K = {
 
 local MAX_64BIT = 0xffffffffffffffff;
 
+
+-- Ouput array of u8 as one u64
 local function as_u64_be(array)
     return bit32.bor(
         bit32.lshift(array[1], 56),
@@ -45,4 +47,12 @@ local function as_u64_be(array)
         bit32.lshift(array[7], 8),
         bit32.lshift(array[8], 0)
     )
+end
+print(as_u64_be({0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01}))
+
+-- Rotate x right for the given amount n
+local function rotr(x, n)
+    -- x = u64
+    -- n = u32
+    return bit32.bor(bit32.rshift(x, n), bit32.lshift(x, 64 - n))
 end
