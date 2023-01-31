@@ -56,3 +56,20 @@ local function rotr(x, n)
     -- n = u32
     return bit32.bor(bit32.rshift(x, n), bit32.lshift(x, 64 - n))
 end
+
+-- Shift x right for the given amount n
+function shr(x, n)
+    -- x = u64
+    -- n = u64
+    return bit32.rshift(x, n)
+end
+
+-- XOR modulus with negation modulus
+function ch(x, y, z)
+    return bit32.bxor(bit32.band(x, y), bit32.band(bit32.bnot(x), z))
+end
+
+-- xor mod
+function maj(x, y, z)
+    return bit32.bxor(bit32.band(x, y), bit32.band(x, z), bit32.band(y, z))
+end
