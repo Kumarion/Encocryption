@@ -73,3 +73,23 @@ end
 function maj(x, y, z)
     return bit32.bxor(bit32.band(x, y), bit32.band(x, z), bit32.band(y, z))
 end
+
+-- logical shifting and xor combination
+function bsig0(x)
+    return bit32.bxor(rotr(x, 28), rotr(x, 34), rotr(x, 39))
+end
+
+-- logical shifting and xor combination
+function bsig1(x)
+    return bit32.bxor(rotr(x, 14), rotr(x, 18), rotr(x, 41))
+end
+
+-- logical shifting and xor combination
+function ssig0(x)
+    return bit32.bxor(rotr(x, 1), rotr(x, 8), shr(x, 7))
+end
+
+-- logical shifting and xor combination
+function ssig1(x)
+    return bit32.bxor(rotr(x, 19), rotr(x, 61), shr(x, 6))
+end
