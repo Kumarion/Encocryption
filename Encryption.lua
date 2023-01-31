@@ -1,6 +1,7 @@
 local Encryption = { };
 
 local METHODS = {
+	-- SHA-2
     ["SHA-224"] = {
         HexSize = 56,
         BytesSize = 28,
@@ -15,7 +16,6 @@ local METHODS = {
             0xbefa4fa4
         },
     },
-
     ["SHA-256"] = {
         HexSize = 64,
         BytesSize = 32,
@@ -30,7 +30,6 @@ local METHODS = {
             0x5be0cd19
         },
     },
-
     ["SHA-384"] = {
         HexSize = 96,
         BytesSize = 48,
@@ -45,7 +44,6 @@ local METHODS = {
             0x47b5481dbefa4fa4,
         },
     },
-
     ["SHA-512"] = {
         HexSize = 128,
         BytesSize = 64,
@@ -59,8 +57,23 @@ local METHODS = {
             0x1f83d9abfb41bd6b,
             0x5be0cd19137e2179
         },
-    }
+    },
+
+	-- SHA-3
 };
+
+-- Currently supports (only SHA-2 for now)
+-- SHA-2
+-- SHA-224
+-- SHA-256
+-- SHA-384
+-- SHA-512
+
+-- SHA-3
+-- SHA3-224
+-- SHA3-256
+-- SHA3-384
+-- SHA3-512
 
 local HASH_CONSTANTS = {
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
