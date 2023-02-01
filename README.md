@@ -23,8 +23,8 @@ Current supported algorithms are:
 # Encoder
 Support for encoding (and later decoding) of data.
 Current supported algorithms are:
-- Base64 
 - Base16 (Hexadecimal)
+- Base64 
 - Base91 (recommended for datastores)
 - More?
 
